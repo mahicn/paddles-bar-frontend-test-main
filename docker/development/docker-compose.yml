@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  project-development:
+    container_name: project
+    build:
+      context: ../../
+      dockerfile: docker/development/Dockerfile
+    image: project-development
+    volumes:
+      - ../../:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    networks:
+      - project
+
+networks:
+  project:
+    name: project
+    driver: bridge
